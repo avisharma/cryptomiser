@@ -1,5 +1,5 @@
 # ﻿Cryptomiser
-*Encryption Library in C Language*
+*Encryption Library in C Language with optimised RSA*
 ***
 
 ### Background
