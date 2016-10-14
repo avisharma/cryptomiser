@@ -1,8 +1,3 @@
-#include<stdio.h>
-#include<math.h>
-#include<string.h>
-#include<stdlib.h>
-
 long int p,q,n,t,flag,e[100000],d[100000],temp[100000],j,m[100000],en[100000],i;
 char msg[100000];
  /*
@@ -21,7 +16,7 @@ void ce();
 long int cd(long int);
 void encrypt();
 void decrypt();
-int main()
+void rsa()
 {
 	printf("\nENTER FIRST PRIME NUMBER\n");
 	scanf("%ld",&p); //3
