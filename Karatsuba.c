@@ -21,7 +21,7 @@
 // Before changing this constant, note the warning mentioned below
 // about potential overflow problems.
 
-#define KARAT_CUTOFF 4
+#define KARAT_CUTOFF 1
 // When karatsuba() gets to numbers with at most KARAT_CUTOFF
 // digits, it reverts to straight grade-school multiplication.
 // (This helps because karatsuba() is slower than grade-school
@@ -181,7 +181,7 @@ getNum(int *a, int *d_a) {
             fprintf(stderr, "using only first %d digits\n", MAX_DIGITS);
             while(c != '\n' && c != EOF) c = getchar();
         }
-        a[*d_a] = c - '0';
+        a[*d_a] = c ;
         ++(*d_a);
     }
     // reverse the number so that the 1's digit is first
