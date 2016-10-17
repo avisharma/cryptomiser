@@ -1,4 +1,7 @@
-long int p,q,n,t,flag,e[1000],d[100],temp[100],j,m[100],en[100],i;
+/*Cryptomiser Encryption Library in C Language with optimised RSA Copyright (C) 2016 Avi Sharma, Mukul Kashiv and Shivam Srivastava
+
+GNU GENERAL PUBLIC LICENSE V3 This program is free software: you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.*/
+long int p1,q1,n,t,flag,e[1000],d[1000],temp[1000],j,m[1000],en[1000],i;
 long long int    ta;
 int count=0;
 char msg[100000];
@@ -73,7 +76,7 @@ void ce(long long int t) //This function is used to calculate e, we choose e in 
 			}
                 flag=prime(i);
       //          printf("Inside ce value of p and q=%lld\t %lld",p,q);
-            if(flag==1&& i!=p&&i!=q)
+            if(flag==1&& i!=p1&&i!=q1)
             {	//printf("%d\n",i);
                 e[k]=i;
 				count++;
@@ -90,9 +93,9 @@ void ce(long long int t) //This function is used to calculate e, we choose e in 
 			break;
 		}
 	}
-	   printf("\nPOSSIBLE VALUES OF e AND d ARE\n");
-	for(i=0;i<count;i++)
-		printf("\n%ld\t%ld\n",e[i],d[i]);
+	  // printf("\nPOSSIBLE VALUES OF e AND d ARE\n");
+//	for(i=0;i<count;i++)
+	//	printf("\n%ld\t%ld\n",e[i],d[i]);
 }
 
 long int cd(long int x) // This function  is used to calculate the value of d//7 enters first

@@ -1,4 +1,6 @@
-// fast Karatsuba multiplication
+/*Cryptomiser Encryption Library in C Language with optimised RSA Copyright (C) 2016 Avi Sharma, Mukul Kashiv and Shivam Srivastava
+
+GNU GENERAL PUBLIC LICENSE V3 This program is free software: you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.*/
 
 #include <stdlib.h>
 #include <stdio.h>
@@ -48,11 +50,13 @@ int y;
   printf("Choose operation: \n");
   printf("1: Show CPU info\n");
   printf("2: Run optimised text encryption\n");
+
   scanf(" %d", &y);
   switch(y)
   {
   case 1 : cpuinfofunc(); break;
   case 2 : cryptomiser(); break;
+
   default : printf("Invalid input.");
   }
     return 0;
@@ -144,10 +148,11 @@ printf("\n==========================================");
 encrypt();
 decrypt();
 printf("\nRSA:\n");
-printf("%f ms (%d trials)\n", 1000 * (double) start / CLOCKS_PER_SEC / j, j);
-printf("\nOptimised RSA:\n");
-printf("%f ms (%d trials)\n", 1000 * (double) start / CLOCKS_PER_SEC / i, i);
 float x = 1000 * (double) start / CLOCKS_PER_SEC / j - 1000 * (double) start / CLOCKS_PER_SEC / i;
+printf("%f ms (%d trials)\n", 1000 * (double) start / CLOCKS_PER_SEC / i, i);
+
+printf("\nOptimised RSA:\n");
+printf("%f ms (%d trials)\n", 1000 * (double) start / CLOCKS_PER_SEC / j, j);
 printf("\nPerformance boost: %f ms\n\n", x);
  //printf("Value of ta is %lld",ta);
 
@@ -157,7 +162,7 @@ printf("\nPerformance boost: %f ms\n\n", x);
 void primality(int *a, int *b ){
 	int len=        d_a;
 	int len2=       d_b;
-    long long int   k,j,r,m,p,q, p1, q1;
+    long long int   k,j,r,m,p,q;
     int             i;
 	int             A[len];
     int             B[len];
