@@ -1,4 +1,6 @@
-// fast Karatsuba multiplication
+/*Cryptomiser Encryption Library in C Language with optimised RSA Copyright (C) 2016 Avi Sharma, Mukul Kashiv and Shivam Srivastava
+
+GNU GENERAL PUBLIC LICENSE V3 This program is free software: you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.*/
 
 #include <stdlib.h>
 #include <stdio.h>
@@ -48,11 +50,13 @@ int y;
   printf("Choose operation: \n");
   printf("1: Show CPU info\n");
   printf("2: Run optimised text encryption\n");
+
   scanf(" %d", &y);
   switch(y)
   {
   case 1 : cpuinfofunc(); break;
   case 2 : cryptomiser(); break;
+
   default : printf("Invalid input.");
   }
     return 0;

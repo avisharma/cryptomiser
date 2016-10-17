@@ -1,3 +1,6 @@
+/*Cryptomiser Encryption Library in C Language with optimised RSA Copyright (C) 2016 Avi Sharma, Mukul Kashiv and Shivam Srivastava
+
+GNU GENERAL PUBLIC LICENSE V3 This program is free software: you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.*/
 long int p1,q1,n,t,flag,e[1000],d[1000],temp[1000],j,m[1000],en[1000],i;
 long long int    ta;
 int count=0;
