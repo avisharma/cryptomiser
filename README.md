@@ -1,7 +1,8 @@
 # ﻿Cryptomiser
+![alt text](http://i.imgur.com/m1jDljW.jpg "Cryptomiser")
+
 *Encryption Library in C Language with optimised RSA*
 ***
-
 ### Background
 The project serves as the minor project for a group of students pursuing B.Tech Computer Science with specialization in Cyber Security and IT forensics at the University of Petroleum and Energy Studies, Dehradun, India.
 
