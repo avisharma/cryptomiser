@@ -1,4 +1,5 @@
 # ﻿Cryptomiser
+![alt text](http://i.imgur.com/m1jDljW.jpg "Cryptomiser")
 *Encryption Library in C Language with optimised RSA*
 ***
 

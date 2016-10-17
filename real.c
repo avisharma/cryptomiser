@@ -37,124 +37,73 @@ void            primality(int *a, int *b);
 
   long long  int             a[MAX_DIGITS]; // first multiplicand
   long long int             b[MAX_DIGITS]; // second multiplicand
-
+    
 	// result goes here
     int             d_a; // length of a
     int             d_b; // length of b
-
+    
 
 int main() {
-int y;
-  printf("Choose operation: \n");
-  printf("1: Show CPU info\n");
-  printf("2: Run optimised text encryption\n");
-  scanf(" %d", &y);
-  switch(y)
-  {
-  case 1 : cpuinfofunc(); break;
-  case 2 : cryptomiser(); break;
-  default : printf("Invalid input.");
-  }
-    return 0;
+    int             d; // maximum length
+    int             i; // counter
+    int             r[6 * MAX_DIGITS];
+	clock_t         start; // for timing
+    clock_t         stop; // for timing
+	
+    getNum(a, &d_a);
+    getNum(b, &d_b);
+	rsa();
+    if(d_a < 0 || d_b < 0) {
+        printf("0\n");
+        exit(0);
+        return 0;
+    }
+	printf("1\n");
+    // let d be the smallest power of 2 greater than d_a and d_b,
+    // and zero out the rest of a and b.
+    i = (d_a > d_b) ? d_a : d_b;
+    for(d = 1; d < i; d *= 2);
+    for(i = d_a; i < d; i++) a[i] = 0;
+    for(i = d_b; i < d; i++) b[i] = 0;
+
+    // do the trials, first for Karatsuba, then for grade-school.
+    // For each trial, we print the result, followed by the time
+    // taken per multiplication, followed by the number of
+    // multiplications done. We do as many multiplications as we
+    // can until we pass away an entire second.
+       start = clock();
+       stop = start + CLOCKS_PER_SEC;
+       printf("2\n");
+       primality(a,b);
+      
+    for(i = 0; clock() < stop; i++) {
+    	
+        karatsuba(a, b, r, d); // compute product w/o regard to carry
+        doCarry(r, 2 * d); // now do any carrying
+    }
+    start = clock() - start;
+    printNum(r, 2 * d);
+    printf(" %f ms (%d trials)\n", 1000 * (double) start / CLOCKS_PER_SEC / i, i);
+	 ce(ta);
+    
+    start = clock();
+    stop = start + CLOCKS_PER_SEC;
+    for(i = 0; clock() < stop; i++) {
+        gradeSchool(a, b, r, d); // compute product in old way
+        doCarry(r, 2 * d); // now do any carrying
+    }
+    start = clock() - start;
+    printNum(r, 2 * d);
+    printf(" %f ms (%d trials)\n", 1000 * (double) start / CLOCKS_PER_SEC / i, i);
+    
+    
+    
+    encrypt();
+    decrypt();
+    
+     //printf("Value of ta is %lld",ta);
 }
 
-
-int cpuinfofunc(int argc, char **argv){
-  char z;
-
-  FILE *cpuinfo = fopen("/proc/cpuinfo", "rb");
-  char *arg22 = 0;
-  size_t size = 0;
-  while(getdelim(&arg22, &size, 0, cpuinfo) != -1)
-  {
-     puts(arg22);
-  }
-  free(arg22);
-  fclose(cpuinfo);
-
-printf("\nDo you want to clear the screen and return to menu? [Y/N]");
-scanf(" %c", &z);
-switch(z)
-{
-  case 'Y': system("clear"); main(); break;
-  case 'y': system("clear"); main(); break;
-  case 'N': break;
-  case 'n': break;
-}
-
-}
-
-void cryptomiser()
-{
-  int             d; // maximum length
-  int             i; // counter
-  int             j; // counter 2
-  int             r[6 * MAX_DIGITS];
-  int             y; //for switch
-clock_t         start; // for timing
-clock_t         stop; // for timing
-printf("Enter first unique prime number, p: \n");
-getNum( a, &d_a); // Error, does not prompt for user input
-getNum( a, &d_a); // makeshift solution for error by overwriting
-printf("Enter second unique prime number, q: \n");
-getNum( b, &d_b);
-rsa();
-if(d_a < 0 || d_b < 0) {
-    printf("0\n");
-    exit(0);
-    return 0;
-}
-//printf("1\n");
-// let d be the smallest power of 2 greater than d_a and d_b,
-// and zero out the rest of a and b.
-i = (d_a > d_b) ? d_a : d_b;
-for(d = 1; d < i; d *= 2);
-for(i = d_a; i < d; i++) a[i] = 0;
-for(i = d_b; i < d; i++) b[i] = 0;
-
-// do the trials, first for Karatsuba, then for grade-school.
-// For each trial, we print the result, followed by the time
-// taken per multiplication, followed by the number of
-// multiplications done. We do as many multiplications as we
-// can until we pass away an entire second.
-   start = clock();
-   stop = start + CLOCKS_PER_SEC;
-  // printf("2\n");
-   primality(a,b);
-
-for(j = 0; clock() < stop; j++) {
-
-    karatsuba(a, b, r, d); // compute product w/o regard to carry
-    doCarry(r, 2 * d); // now do any carrying
-}
-start = clock() - start;
-
-ce(ta);
-
-start = clock();
-stop = start + CLOCKS_PER_SEC;
-for(i = 0; clock() < stop; i++) {
-    gradeSchool(a, b, r, d); // compute product in old way
-    doCarry(r, 2 * d); // now do any carrying
-}
-start = clock() - start;
-    printf("\n\n");
-printNum(r, 2 * d);
-printf("\n==========================================");
-encrypt();
-decrypt();
-printf("\nRSA:\n");
-float x = 1000 * (double) start / CLOCKS_PER_SEC / j - 1000 * (double) start / CLOCKS_PER_SEC / i;
-printf("%f ms (%d trials)\n", 1000 * (double) start / CLOCKS_PER_SEC / i, i);
-
-printf("\nOptimised RSA:\n");
-printf("%f ms (%d trials)\n", 1000 * (double) start / CLOCKS_PER_SEC / j, j);
-printf("\nPerformance boost: %f ms\n\n", x);
- //printf("Value of ta is %lld",ta);
-
-
-
-}
 void primality(int *a, int *b ){
 	int len=        d_a;
 	int len2=       d_b;
@@ -162,17 +111,17 @@ void primality(int *a, int *b ){
     int             i;
 	int             A[len];
     int             B[len];
-
-	for(i=len-1;i>=0;i--){
+    
+	for(i=len-1;i>=0;i--){	
 	A[i]=a[i];
 	}
-
-	for(i=(len2)-1;i>=0;i--){
+	
+	for(i=(len2)-1;i>=0;i--){	
 	B[i]=b[i];
 	}
-
+	
   p=arrayToInt(A,len);
-
+  
   //printf("\nA done without exit");
   printf("P is %lld\n",p);
   q=arrayToInt(B,len2);
@@ -182,8 +131,8 @@ void primality(int *a, int *b ){
    ta=(p-1)*(q-1);
    p1=p;
    q1=q;
-//	ce(ta);
-
+//	ce(ta); 
+  
 }
 
 // ret must have space for 6d digits.
@@ -289,20 +238,20 @@ printNum(int *a, int d) {
 
  long long int  arrayToInt(int *A,int len)
 {
-
+    
     long long int length = len,m,i,r;
     char a_as_num[length][40];
     char string[30] = "\0";
 
-
+    
 
     for (i = length-1; i >=0 ; i--) {
-        sprintf(a_as_num[i], "%lld", A[i]);
+        sprintf(a_as_num[i], "%lld", A[i]); 
         strcat(string, a_as_num[i]);
     }
     r = atoll(string);
     printf("\nValue of number is :%lld\n", r);
-
+    
     	m=sqrt(r); // we can also use here pr/2 ,Based on compilation time we'll choose one.
 	if(r==1)
 	{
@@ -314,21 +263,25 @@ printNum(int *a, int d) {
 	return r;
 	}
 	else{
-
-	for(i=2;i<=m;i++)
-	{
+	
+	for(i=2;i<=m;i++) 
+	{ 
 	 if(i>=100000){//  precision is upto 10^12 because sqrt of(10^12) or less will be six digits only
 	   	break;
 	   }
-		if(r%i==0)
+		if(r%i==0) 
 			{
-
-				printf("\nWRONG INPUT\n");
+			
+				printf("\nWRONG INPUT\n"); 
 			exit(1);}
 }
-	return r;
-	}
-
-
-
+	return r;	
+	} 
+    
+    
+   
 }
+
+
+
+
