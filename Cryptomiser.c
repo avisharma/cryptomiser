@@ -148,12 +148,21 @@ printf("\n==========================================");
 encrypt();
 decrypt();
 printf("\nRSA:\n");
+<<<<<<< HEAD
 float x = 1000 * (double) start / CLOCKS_PER_SEC / j - 1000 * (double) start / CLOCKS_PER_SEC / i; // i for RSA
 printf("%f ms (%d trials)\n", 1000 * (double) start / CLOCKS_PER_SEC / i, i);
 
 printf("\nOptimised RSA:\n");
 printf("%f ms (%d trials)\n", 1000 * (double) start / CLOCKS_PER_SEC / j, j); // j for optimised RSA
 printf("\nTime difference: %f ms\n\n", x);
+=======
+float x = 1000 * (double) start / CLOCKS_PER_SEC / j - 1000 * (double) start / CLOCKS_PER_SEC / i;
+printf("%f ms (%d trials)\n", 1000 * (double) start / CLOCKS_PER_SEC / i, i);
+
+printf("\nOptimised RSA:\n");
+printf("%f ms (%d trials)\n", 1000 * (double) start / CLOCKS_PER_SEC / j, j);
+printf("\nPerformance boost: %f ms\n\n", x);
+>>>>>>> ed3bda343e8977a59cec30412676ba959f9e1ea4
  //printf("Value of ta is %lld",ta);
 
 
