@@ -4,7 +4,7 @@ GNU GENERAL PUBLIC LICENSE V3 This program is free software: you can redistribut
 long int p1,q1,n,t,flag,e[1000],d[1000],temp[1000],j,m[1000],en[1000],i;
 long long int    ta;
 int count=0;
-char msg[100000];
+char msg[100];
 int prime(long int);
 void ce(long long int);
 long int cd(long int);
@@ -123,7 +123,8 @@ void encrypt()
 	i=0;
 	//printf("The first value of keys is= % li\n",key);
 	len=strlen(msg);
-	//printf("The length of msg is = %d\n",len); //hi//2
+
+//	printf("The length of msg is = %d\n",len); //hi//2
 	while(i!=len)
 	{ //	printf("2\n");
 		pt=m[i];
@@ -182,3 +183,4 @@ void decrypt()
 	{	printf("%c",m[i]);}
 	printf("\n\n");
 }
+

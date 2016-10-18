@@ -5,7 +5,7 @@ GNU GENERAL PUBLIC LICENSE V3 This program is free software: you can redistribut
 #include <stdlib.h>
 #include <stdio.h>
 #include <time.h>
-#include<math.h>
+#include <math.h>
 #include "rsa.h"
 #define MAX_DIGITS 1024
 // Numbers will be stored as an array arr of integers.
@@ -37,7 +37,7 @@ long long int   arrayToInt(int *A ,int len);
 void            primality(int *a, int *b);
 
 
-  long long  int             a[MAX_DIGITS]; // first multiplicand
+  long long int            a[MAX_DIGITS]; // first multiplicand
   long long int             b[MAX_DIGITS]; // second multiplicand
 
 	// result goes here
@@ -148,12 +148,12 @@ printf("\n==========================================");
 encrypt();
 decrypt();
 printf("\nRSA:\n");
-float x = 1000 * (double) start / CLOCKS_PER_SEC / j - 1000 * (double) start / CLOCKS_PER_SEC / i;
+float x = 1000 * (double) start / CLOCKS_PER_SEC / j - 1000 * (double) start / CLOCKS_PER_SEC / i; // i for RSA
 printf("%f ms (%d trials)\n", 1000 * (double) start / CLOCKS_PER_SEC / i, i);
 
 printf("\nOptimised RSA:\n");
-printf("%f ms (%d trials)\n", 1000 * (double) start / CLOCKS_PER_SEC / j, j);
-printf("\nPerformance boost: %f ms\n\n", x);
+printf("%f ms (%d trials)\n", 1000 * (double) start / CLOCKS_PER_SEC / j, j); // j for optimised RSA
+printf("\nTime difference: %f ms\n\n", x);
  //printf("Value of ta is %lld",ta);
 
 
@@ -195,8 +195,7 @@ void primality(int *a, int *b ){
 // my use of the space in ret is pretty creative.
 // | ar*br  | al*bl  | asum*bsum | lower-recursion space | asum | bsum |
 //  d digits d digits  d digits     3d digits              d/2    d/2
-void
-karatsuba(int *a, int *b, int *ret, int d) {
+void karatsuba(int *a, int *b, int *ret, int d) {
     int             i;
     int             *ar = &a[0]; // low-order half of a
     int             *al = &a[d/2]; // high-order half of a
@@ -336,3 +335,4 @@ printNum(int *a, int d) {
 
 
 }
+
